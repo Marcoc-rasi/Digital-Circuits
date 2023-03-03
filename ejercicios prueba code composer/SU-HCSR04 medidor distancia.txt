@@ -1,0 +1,133 @@
+//Circuitos digitales 3-Feb-21
+//plantilla de sensor ultrasonico
+//una de muchas
+
+
+#include <stdint.h>
+#include <stdbool.h>
+#include "inc/tm4c1294ncpdt.h"
+#include "driverlib/rom_map.h"
+#include "driverlib/sysctl.h"
+
+uint8_t d_uint8Dato;
+uint32_t ui32Loop;
+
+TRIGGER_04 (void)
+
+{
+     GPIO_PORTN_DATA_R |= 0B00010000;  // PONER A 1 PN4
+             SysCtlDelay(x);  // 3 * (1/f) 
+        // retardo de 10 uS
+             GPIO_PORTN_DATA_R &= ~(0B00010000);
+}
+
+PORTN_INI(void)
+
+{
+    SYSCTL_RCGCGPIO_R = SYSCTL_RCGCGPIO_R12;
+    ui32Loop = SYSCTL_RCGCGPIO_R;
+    GPIO_PORTN_DIR_R = 0x10; //PN4 SALIDA Y PN5 ENTRADA 0001 0000
+    GPIO_PORTN_DEN_R = 0x30;  //PN4 Y PN5 SEAN DIGITALES 0011 0000
+    GPIO_PORTN_DATA_R= 0x00;  // 0000 0000
+}
+
+TIMER_INI (void)
+
+{
+    SYSCTL_RCGCTIMER_R |= 0X08; //HABILITA TIMER 3   0000 1000
+    //retardo para que el reloj alcance el PORTN Y TIMER 3
+            ui32Loop = SYSCTL_RCGCTIMER_R;
+            TIMER3_CTL_R=0X00000000; //DESHABILITA TIMER EN LA CONFIGURACION
+            TIMER3_CFG_R= 0X00000000; //CONFIGURAR PARA 32 BITS
+            //TIMER3_TAMR_R= 0X00000002; //CONFIGURAR PARA MODO PERIODICO CUENTA HACIA ABAJO
+            TIMER3_TAMR_R= 0X00000012; //CONFIGURAR PARA MODO PERIODICO CUENTA HACIA ARRIBA
+            TIMER3_TAILR_R= 0X00FFFFFF; // VALOR DE RECARGA
+            TIMER3_TAPR_R= 0X00; // SOLO PARA MODOS DE 16 BITS
+            TIMER3_ICR_R= 0X00000001 ; //LIMPIA PISOBLE BANDERA PENDIENTE DE TIMER3
+            //TIMER3_IMR_R |= 0X00000000; //ACTIVA INTRRUPCION DE TIMEOUT
+           // NVIC_EN1_R= 1<<(35-32); //HABILITA LA INTERRUPCION DE  TIMER3
+           // TIMER3_CTL_R |= 0X00000001; //HABILITA TIMER EN LA CONFIGURACION
+}
+
+
+UART_INI(void)
+{
+SYSCTL_RCGCUART_R |=0X0001; //HABILITAR UART0  0000 0001
+SYSCTL_RCGCGPIO_R |=0X0001; //HABILITAR PUERTO A
+UART0_CTL_R &=~0X0001;  //DESHABILITAR UART
+UART0_IBRD_R = 27 ; //IBDR=int(50000000/16*115200))= int(27.1267)
+UART0_FBRD_R =8 ; //FBRD= round(0.1267*64 =8)
+UART0_LCRH_R =0X0070; //8 BITS, HABILITAR FIFO
+UART0_CTL_R= 0X0301 ; //HABILITAR RXE, TXE Y UART
+GPIO_PORTA_AHB_PCTL_R = (GPIO_PORTA_AHB_PCTL_R&0XFFFFFF00)+0X00000011; //UART
+GPIO_PORTA_AHB_AMSEL_R &= ~0X03; //DESHABILITAR FUNCION ANLOGICA EN PA0-1
+GPIO_PORTA_AHB_AFSEL_R |= 0X03; //HABILITAR FUNCION ALTERNA EN PA0-1
+GPIO_PORTA_AHB_DEN_R |= 0X03; //HABILITAR FUNCION I/O DIGITAL
+}
+
+//esperar hasta que se reciba un dato
+char UART_Lee_dato(void)
+{
+while((UART0_FR_R&0X0010)!=0); //ESPERAR A QUE RXFE SEA CERO
+d_uint8Dato=((char)(UART0_DR_R&0xff));
+//return((char)(UART0_DR_R&0xff));
+}
+
+char UART0_Escribe_dato(char dato)
+{
+while   ((UART0_FR_R&0X0020)!=0); // espera a que TXFF sea cero
+UART0_DR_R=dato;
+}
+int main(void) {
+    uint32_t g_ui32SysClock;
+    g_ui32SysClock = MAP_SysCtlClockFreqSet((SYSCTL_XTAL_25MHZ |
+                                                 SYSCTL_OSC_MAIN |
+                                                 SYSCTL_USE_PLL |
+                                                 SYSCTL_CFG_VCO_480), 50000000);
+ //
+
+    UART_INI();
+    PORTN_INI();
+    TIMER_INI();
+
+ while(1)
+ {
+    TRIGGER_04();
+
+    while((GPIO_PORTN_DATA_R&0X20)==0);  // 0010 0000 ESPERAR A QUE PN5 SEA 1
+    TIMER3_CTL_R |= 0X00000001; //HABILITA TIMER EN LA CONFIGURACION CUANDO PN5 SEA 1
+    while((GPIO_PORTN_DATA_R&0X20)==0X20);
+    TIMER3_CTL_R |= 0X00000001;
+    
+    SysCtlDelay(x);   //xnS  
+    //retardo de 63 mS   
+    
+ }
+
+
+
+while (1)
+{
+    //UART_Lee_dato();
+    UART0_Escribe_dato(distancia );
+}
+}
+
+
+//*********************************************
+// CONFIGURACIÓN PARA TIMER DE 32 BITS
+
+
+
+
+        
+
+         
+         // {
+        // while((TIMER3_RIS_R&0X01)==0);
+        // TIMER3_ICR_R= 0X00000001;
+        // GPIO_PORTN_DATA_R ^= 0x01;
+        //  }
+
+         // while(1);
+
