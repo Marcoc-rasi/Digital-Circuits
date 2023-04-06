@@ -1,4 +1,5 @@
 #Display 7-segment
+
 A 7-segment digital circuit is an electronic device used to visually represent numbers and some characters using seven LED diodes arranged in segments. Each segment is identified with a letter from A to G and can be turned on or off depending on the combination to be displayed. In addition, there is an eighth LED that represents a decimal point (DP).
 7-segment digital circuits can be common anode or common cathode, depending on whether the LEDs are connected by their positive or negative terminal, respectively. This means that to turn on a segment, a positive or negative voltage must be applied to its corresponding terminal, depending on the type of circuit.
 The video shows the operation of a common anode 7-segment digital circuit controlled by a BCD to 7-segment decoder that converts a 4-bit binary input into the appropriate output for the display. The decoder is connected to a power source and a switch that allows changing the binary input value.
