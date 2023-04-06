@@ -1,4 +1,5 @@
 #Pantalla 7-segmentos
+
 Un circuito digital de 7 segmentos es un dispositivo electrónico que se utiliza para representar visualmente números y algunos caracteres mediante siete diodos LED dispuestos en forma de segmentos.
 Cada segmento se identifica con una letra de la A a la G, y se puede encender o apagar según la combinación que se quiera mostrar. Además, hay un octavo LED que representa un punto decimal (DP).
 Los circuitos digitales de 7 segmentos pueden ser de ánodo común o de cátodo común, dependiendo de si los LED están unidos por su terminal positiva o negativa, respectivamente. Esto implica que para encender un segmento se debe aplicar una tensión positiva o negativa en su terminal correspondiente, según el tipo de circuito.
