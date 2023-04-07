@@ -37,3 +37,62 @@
    - Uses conditional, arithmetic, and logical jump instructions to perform comparisons and input/output operations.
 - The code is written in a professional style, following assembly language conventions for naming, indenting, and commenting.
 - The code is optimized to take advantage of the low power and high performance characteristics of the MSP430 microcontroller.
+
+# Time.asm
+
+- The code aims to measure the execution time of an instruction using the microcontroller's internal timer and display the result on the GPIO ports.
+- The code is made up of the following parts:
+   - A section for the definition of constants and variables, where the symbolic names are assigned to the memory addresses and registers of the microcontroller, as well as the initial values of some variables.
+   - An initialization section, where the microcontroller operating modes, system clock, timer, GPIO ports and timer overflow interrupt are configured.
+   - A main code section, where the instruction to be measured is executed (in this case, an addition) and the value of the timer counter is saved before and after the execution. The difference between the two values is then calculated and stored in a variable. Finally, the value of the variable on the GPIO ports is displayed.
+   - An interrupt service routine (ISR) section, where a variable is incremented each time a timer overflow occurs and the corresponding flag bit is cleared.
+
+# new.asm
+
+The code in the file performs the following functions:
+- Initializes the main clock of the microcontroller to 16 MHz and the auxiliary clock to 32 kHz.
+- Configure pins P1.0 and P1.6 as digital outputs and pins P1.1 and P1.2 as analog inputs.
+- Enables the 12-bit analog-to-digital converter (ADC) with internal reference and sample and hold, and selects channels A1 and A2 as input sources.
+- Starts an ADC conversion each time the button connected to pin P1.3 is pressed, and stores the result in registers R5 and R6.
+- Compares the ADC values with a predefined threshold, and turns the LEDs connected to pins P1.0 and P1.6 on or off according to the comparison result.
+- Enters low power mode (LPM3) when there is no ADC conversion in progress, and wakes up by button or ADC interrupt.
+
+The code is structured in sections that define the constants, variables, initialization routines, interrupt service routines, and the main loop. The code is commented to make it easier to understand and debug.
+
+# turn on.asm
+
+-The file contains the assembly language code to turn on an LED connected to pin 0 of port B of a Texas Instruments microcontroller.
+- The code is based on the following instructions:
+   - .thumb: Indicates that the code is compiled in Thumb mode, which uses 16-bit instructions.
+   - .equ: defines a symbolic constant with a numeric value.
+   - .global: declares a label as global, so it can be used from other files.
+   - .text: indicates the beginning of the code section.
+   - movs: moves an immediate value or a record to another record.
+   - ldr: load a value from a memory address to a register.
+   - orrs: performs a logical OR operation between two registers and stores the result in the first one.
+   - str: stores a value from a register to a memory address.
+   -b: Jump to a label within the same file.
+- The code follows the following steps:
+   - Defines the memory addresses of the port B registers (GPIO_PORTB_DATA_R and GPIO_PORTB_DIR_R) and the value of pin 0 (LED).
+   - Declare the main tag as global and place it at the beginning of the code section.
+   - Moves the value 0 to register r0, which will be used as a counter.
+   - Loads the memory address of the GPIO_PORTB_DIR_R register to the r1 register.
+   - Load the value of the LED pin to register r2.
+   - Performs an OR operation between registers r1 and r2, to configure the pin as an output.
+   - Stores the result in the memory address of the GPIO_PORTB_DIR_R register.
+   - Loads the memory address of the GPIO_PORTB_DATA_R register to the r3 register.
+   - Performs an OR operation between registers r0 and r2, to turn the LED on or off according to the value of the counter.
+   - Stores the result in the memory address of the GPIO_PORTB_DATA_R register.
+   - Increases the value of the counter by one and stores it in register r0.
+   - Jump to the main tag to repeat the process indefinitely.
+
+# fibonachistring.asm
+
+- Contains assembly language code to calculate and display the Fibonacci series on a Texas Instruments microcontroller.
+- The Fibonacci series is a sequence of natural numbers that begins with 0 and 1 and each term is the sum of the previous two. For example: 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
+- The code of the file "seriefibonachi.asm" performs the following steps:
+     - Configures port B as an output and initializes it to zero.
+     - Assigns the initial values of the series (0 and 1) to two registers called Penultimate and Last.
+     - Enters a loop where it adds the Penultimate and Last values and saves them in a register called Sum.
+     - Check if the result of the sum is greater or equal to 256. If so, it exits the loop and displays the value of Last on port B. If not, it continues the loop by assigning the value of Last to Penultimate and the value of Sum to Last.
+- The code is written following the assembler conventions for PIC16F84A microcontrollers, which are compatible with Texas Instruments microcontrollers. The code uses instructions such as movwf, addwf, btfsc, goto, and sleep to manipulate registers and control the flow of the program.
