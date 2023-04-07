@@ -1,4 +1,4 @@
-#CD141220-display.c
+# CD141220-display.c
 
 It is a C language program that is used to control a 7-segment display with an MSP430 microcontroller. The program performs the following functions:
 - Defines the constants and global variables that are used in the program, such as the P1 port pins that are connected to the display , the value of the system clock frequency, and the number of times to repeat the power cycle of the system. display .
@@ -32,7 +32,7 @@ The operation and each part of the program can be described as follows:
 
 This program shows how to use a Texas Instruments MSP430 microcontroller to control a 7-segment display using interrupts, timers, and logic and bit operations. The code is well structured, commented and documented, making it easy to understand and modify.
 
-#CODPRAC9.C
+# CODPRAC9.C
 
 It is a C language program for a Texas Instruments MSP430 family microcontroller.
 - Inclusion of libraries: the necessary libraries for the operation of the program are included, such as "msp430.h" that contains the definitions of the registers and the peripherals of the microcontroller, and " intrinsics.h " that contains intrinsic functions of the compiler.
@@ -44,7 +44,7 @@ that perform specific tasks are defined, such as the ADC_init ( ) function that 
 
 The goal of the program is to measure the voltage of an analog signal connected to pin P1.4 via the ADC, and turn an LED connected to pin P1.0 on or off depending on whether the voltage is higher or lower than a threshold defined by a constant. To improve measurement accuracy, a moving average of the last four values read from the ADC is used.
 
-#SU-HCSR04 distance meter.txt
+# SU-HCSR04 distance meter.txt
 
 The code is based on the principle that the sensor sends out a sound wave and measures the time it takes to receive its echo. Knowing the speed of sound, the distance to the object can be calculated.
 The code is divided into several parts:
@@ -78,7 +78,7 @@ The operation and parts of the program can be described as follows:
 The program is well structured and documented, following good C programming practices. In addition, it uses functions and libraries provided by Texas Instruments to facilitate the use of the microcontroller and the sensor.
 
 
-#adc-pwm.c
+# adc-pwm.c
 
 The program uses the analog-to-digital converter (ADC) and the pulse width modulator (PWM) to control the speed of a direct current (DC) motor. The program performs the following functions:
 - Configures the ADC to sample the signal from a potentiometer connected to an analog input. The ADC is periodically activated by an internal timer and generates an interrupt upon completion of the conversion.
@@ -120,7 +120,7 @@ It is a program that uses the analog-to-digital converter (ADC) of a Texas Instr
 - Clears the ADC interrupt flag to allow new interrupts.
 This program is an example of how to use the ADC of a Texas Instruments microcontroller to perform analog-to-digital conversion and communicate with another device via a serial interface. An experienced programmer could modify this program to suit their specific needs, such as changing the input channel of the ADC, the baud rate of the serial interface, or the communication protocol used.
 
-#hc05.c
+# hc05.c
 
 It is a program written in C language to control an HC-05 Bluetooth module connected to a Texas Instruments microcontroller. The program performs the following functions:
 
