@@ -1,6 +1,8 @@
 # Circuito restador y flip flop
  
- - Subtractor circuit: it is a file with the extension .pdsprj that contains the design of a two-bit subtractor circuit using logic gates. The subtractor circuit is capable of performing the binary operation A - B, where A and B are two-bit numbers, and obtaining the result R and the carry C. The circuit uses four XOR gates to obtain the bits of R and two AND gates. and an OR to get the bit of C. The circuit has four inputs (A1, A0, B1, B0) and three outputs (R1, R0, C).
+ - Subtractor circuit: 
+ 
+ it is a file with the extension .pdsprj that contains the design of a two-bit subtractor circuit using logic gates. The subtractor circuit is capable of performing the binary operation A - B, where A and B are two-bit numbers, and obtaining the result R and the carry C. The circuit uses four XOR gates to obtain the bits of R and two AND gates. and an OR to get the bit of C. The circuit has four inputs (A1, A0, B1, B0) and three outputs (R1, R0, C).
 - Flip flop: it is a file with the extension .pdsprj that contains the design of a JK flip flop with asynchronous preset and clear inputs. A JK flip flop is a memory device that has two inputs (J and K) and two outputs (Q and Q'). The flip flop changes state according to signals applied to its inputs and to a clock (CLK) input. The flip flop has four modes of operation: hold (if J = K = 0), change (if J = K = 1), set to 1 (if J = 1 and K = 0), and set to 0 (if J = 0). 0 and K = 1). The flip flop also has two asynchronous inputs that allow the device state to be initialized regardless of the other inputs: preset (PRE) sets Q to 1 and clear (CLR) sets Q to 0. These inputs are turned low. The circuit uses four NAND gates to implement the function of the JK flip flop.
 
 # HEX 7 SEG y TEMP555
