@@ -5,7 +5,6 @@
 
 # HEX 7 SEG y TEMP555
 
-Your files are:
 - HEX 7 SEG and TEMP555.DSN: It is the file that contains the design of the circuit in the Proteus program. The circuit consists of a hexadecimal counter that shows the values from 0 to F on a seven-segment display (display). The display is an electronic component that is made up of seven LEDs (segments) that can be turned on or off individually to represent characters. Each segment is identified with a letter from A to G. The counter uses a 74LS90 integrated circuit that generates the necessary pulses to increase the value shown on the display. The counter is connected to a 74LS47 decoder that converts the binary value of the counter into the corresponding code to activate the display segments. The display is of the common cathode type, which means that all the cathodes of the LEDs are connected to a common pin that must go to ground (level 0). To turn on each segment a high level (level 1) must be applied to the corresponding pin through a current limiting resistor. The circuit also includes a 555 timer that generates a square signal with a frequency adjustable via a potentiometer. This signal is used to control the speed of the counter. The 555 timer is a very versatile integrated circuit that can function as an oscillator, monostable, or astable depending on how its terminals are connected.
 - HEX 7 SEG and TEMP555.LYT: It is the file that contains the design of the printed circuit (PCB) in the Proteus program.
 - HEX 7 SEG and TEMP555.HEX: It is the file that contains the hexadecimal code that must be recorded in the PIC16F84A microcontroller used in the circuit.
@@ -13,7 +12,6 @@ Your files are:
 
 # Transistores
 
-Your files are:
 - Transistor 2N2222A.pdsprj: It is a Proteus project that shows the operation of a 2N2222A transistor as a signal amplifier. The 2N2222A transistor is a type of bipolar junction transistor (BJT) that is commonly used for low power and switching applications.
 - Transistor 2N3904.pdsprj: It is another Proteus project that shows the operation of a 2N3904 transistor as a signal amplifier. The 2N3904 transistor is also a type of BJT transistor that is used for general low power and switching applications.
 - Transistor BC547.pdsprj: It is another Proteus project that shows how a BC547 transistor works as a signal amplifier. BC547 transistor is also a type of BJT transistor used for general low power and switching applications.
