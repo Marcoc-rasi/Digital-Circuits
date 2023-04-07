@@ -32,7 +32,7 @@ El funcionamiento y cada parte del programa se puede describir de la siguiente m
 
 Este programa muestra cómo usar un microcontrolador Texas Instruments MSP430 para controlar una pantalla de 7 segmentos usando interrupciones, temporizadores y operaciones lógicas y de bits. El código está bien estructurado, comentado y documentado, lo que facilita su comprensión y modificación.
 
-#CODPRAC9.C
+# CODPRAC9.C
 
 Es un programa en lenguaje C para un microcontrolador de la familia MSP430 de Texas Instruments.
 - Inclusión de librerías: se incluyen las librerías necesarias para el funcionamiento del programa, como "msp430.h" que contiene las definiciones de los registros y los periféricos del microcontrolador, y "intrínsecos.h" que contiene funciones intrínsecas del compilador.
