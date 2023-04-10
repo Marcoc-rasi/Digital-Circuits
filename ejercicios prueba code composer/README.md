@@ -1,4 +1,4 @@
-## CD141220-display.c
+# CD141220-display.c
 
 Este código es un programa en C para un microcontrolador TM4C1294NCPDT de Texas Instruments que interactúa con un display LCD de 16x2. El código define varias funciones para inicializar el display, enviar comandos y datos, y verificar el estado de la bandera de ocupado del display.
 La función INILCD inicializa el display para usar una interfaz de 8 bits, 2 líneas y caracteres de 5x7. También enciende el display con cursor y destello, borra el contenido del display y configura el comportamiento del cursor para que se incremente y se desplace al escribir.
