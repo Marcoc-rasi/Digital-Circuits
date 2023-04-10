@@ -1,48 +1,13 @@
-# CD141220-display.c
+## CD141220-display.c
 
-It is a C language program that is used to control a 7-segment display with an MSP430 microcontroller. The program performs the following functions:
-- Defines the constants and global variables that are used in the program, such as the P1 port pins that are connected to the display , the value of the system clock frequency, and the number of times to repeat the power cycle of the system. display .
-- Initializes the microcontroller by setting the P1 port address, function, and output registers, the system clock control register, and the A0 timer control register.
-- Define a function called " delay_ms " that receives as a parameter an integer that represents the time in milliseconds that you want to wait. The function uses timer A0 to generate an interrupt every 1 ms and counts the number of interrupts until the parameter value is reached. The function is used to generate delays between display state changes .
-- Define a function called "display_7seg" that receives as a parameter an integer between 0 and 9 that represents the digit that you want to show on the display . The function uses a 10-element array that contains the binary values corresponding to each digit and sends them to port P1 through an assignment operation. The function is used to show numbers on the display .
-- Defines a function called " main " that contains the main loop of the program. The function performs the following actions:
-- Declare a local variable called "i" that is used as a counter.
-- Start an infinite loop with the statement " while ( 1)".
-- Inside the loop, go through the values from 0 to 9 with the statement " for ( i=0; i<10; i++)".
-- Within the for loop , call the function "display_7seg" passing the value of "i" as a parameter.
-- After displaying each number, it calls the function " delay_ms " passing the value of 500 as a parameter to generate a delay of half a second.
-for loop , start the loop again from the beginning.
-
-The operation and each part of the program can be described as follows:
-- It includes the necessary libraries for the use of the functions and constants of the microcontroller, such as "msp430.h" and " stdint.h ".
-- Define the pins that are connected to the display using macros, such as "#define SEG_A BIT0" and "#define SEG_B BIT1".
-- Defines a table with the hexadecimal values that correspond to each digit from 0 to 9 on the display , such as "0x3F" for 0 and "0x06" for 1.
--Declare a global variable called " display " that stores the current value of the display .
-- Define a function called " initPorts " that configures the microcontroller's ports and pins as digital outputs and initializes them low.
-- Define a function called " initTimer " that sets microcontroller timer A to generate an interrupt every 1 second using the internal clock SMCLK and divider 8.
-- Define a function called " updateDisplay " that takes an integer parameter called " value " and updates the value of the global variable " display " with the corresponding hexadecimal value from the table according to the decimal value of " value ".
-- Define a function called " showDisplay " that sends the value of the global variable " display " to the display pins using logic and bit shift operations.
-- Define a function called "__interrupt_vec ( TIMER0_A0_VECTOR ) " that is executed when the interrupt of timer A occurs and calls the functions " updateDisplay " and " showDisplay " with a random value between 0 and 9 using the "rand" function .
-- Defines the main function " main " that performs the following actions:
-- Disable the watchdog timer using the macro "WDTCTL = WDTPW + WDTHOLD".
-- Call the function " initPorts " to configure the ports and pins of the microcontroller.
-- Call the function " initTimer " to set the timer A of the microcontroller.
-- Enable global interrupts using the "__ bis_SR_ register ( GIE)" macro.
-- Enters an infinite loop that does nothing.
-
-This program shows how to use a Texas Instruments MSP430 microcontroller to control a 7-segment display using interrupts, timers, and logic and bit operations. The code is well structured, commented and documented, making it easy to understand and modify.
+Este código es un programa en C para un microcontrolador TM4C1294NCPDT de Texas Instruments que interactúa con un display LCD de 16x2. El código define varias funciones para inicializar el display, enviar comandos y datos, y verificar el estado de la bandera de ocupado del display.
+La función INILCD inicializa el display para usar una interfaz de 8 bits, 2 líneas y caracteres de 5x7. También enciende el display con cursor y destello, borra el contenido del display y configura el comportamiento del cursor para que se incremente y se desplace al escribir.
+Las funciones ESCCOM y ESCDAT envían comandos y datos al display, respectivamente. Estas funciones utilizan la función _E para generar un pulso en la terminal E del display y enviar el comando o dato.
+La función BUSY verifica el estado de la bandera de ocupado del display y espera hasta que sea cero. Esta función utiliza la función LEECON para leer el valor del registro de control del display y verificar si la bandera de ocupado está activa.
 
 # CODPRAC9.C
 
-It is a C language program for a Texas Instruments MSP430 family microcontroller.
-- Inclusion of libraries: the necessary libraries for the operation of the program are included, such as "msp430.h" that contains the definitions of the registers and the peripherals of the microcontroller, and " intrinsics.h " that contains intrinsic functions of the compiler.
-- Definition of constants: some symbolic constants are defined to facilitate the reading and maintenance of the code, such as "LED1" which represents the P1.0 pin where an LED is connected, and "FREQ" which represents the frequency of the main system clock (SMCLK).
-- Microcontroller configuration: the microcontroller registers are configured to establish the desired operating mode, such as the clock, input and output pins, timers, analog-to-digital converter (ADC), etc.
-main function ( ) is defined, which contains the infinite loop of the program, where the main tasks are performed, such as reading the ADC value, calculating the moving average, turning the LED on or off according to the average value, etc. .
-that perform specific tasks are defined, such as the ADC_init ( ) function that initializes the ADC with the appropriate parameters, the ADC_read () function that reads the ADC value and returns it, the average () function that calculates the moving average of the last four values read from the ADC, etc.
-( ) function that is activated every 100 ms by timer A0 and calls the ADC_read () function, or the ADC10_ISR() function that fires when an ADC conversion is complete and saves the value to a global variable.
 
-The goal of the program is to measure the voltage of an analog signal connected to pin P1.4 via the ADC, and turn an LED connected to pin P1.0 on or off depending on whether the voltage is higher or lower than a threshold defined by a constant. To improve measurement accuracy, a moving average of the last four values read from the ADC is used.
 
 # SU-HCSR04 distance meter.txt
 
